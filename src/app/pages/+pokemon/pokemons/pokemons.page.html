@@ -38,9 +38,11 @@
     <img [src]="pokemon.sprites.front_default" slot="start" width="70" />
     <ion-label> {{pokemon.name | titlecase}} </ion-label>
     <ion-chip slot="end" color="light"> #{{pokemon.id}} </ion-chip>
-    @if(pokemon.favorite === true){
-    <ion-icon name="star" color="warning" slot="end"></ion-icon>
-    }
+    <ion-icon
+      [name]="pokemon.favorite === true ? 'star' : 'star-outline'"
+      color="warning"
+      slot="end"
+    ></ion-icon>
   </ion-item>
   } @empty {
   <ion-item color="dark">
