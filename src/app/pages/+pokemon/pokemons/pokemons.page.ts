@@ -62,6 +62,7 @@ import { PokemonService } from '../../../services/pokemon.service';
     IonSearchbar,
     IonSegment,
     IonSegmentButton,
+    PokemonPage,
   ],
   providers: [ModalController],
   changeDetection: ChangeDetectionStrategy.OnPush,
