@@ -40,7 +40,7 @@
     <ion-chip slot="end" color="light"> #{{pokemon.id}} </ion-chip>
     <ion-icon
       [name]="pokemon.favorite === true ? 'star' : 'star-outline'"
-      color="warning"
+      [color]="pokemon.favorite === true ? 'warning' : 'medium'"
       slot="end"
     ></ion-icon>
   </ion-item>
