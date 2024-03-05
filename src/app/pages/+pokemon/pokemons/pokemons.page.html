@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-row
+      class="ion-no-padding ion-padding-horizontal ion-justify-content-between ion-align-items-center"
+    >
+      <ion-col size="auto">
+        <ion-label> Pokemon </ion-label>
+      </ion-col>
+      @if (loading() === true){
+      <ion-col size="auto">
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-searchbar
+      placeholder="Filter by name"
+      (ionInput)="updateNameFilter($event)"
+      [debounce]="300"
+    ></ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-segment [value]="type()">
+      <ion-segment-button value="all" (click)="updateType('all')"
+        >All</ion-segment-button
+      >
+      <ion-segment-button value="favorites" (click)="updateType('favorites')"
+        >Favorites</ion-segment-button
+      >
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  @for (pokemon of pokemons(); track pokemon.id) {
+  <ion-item color="dark" lines="full" button (click)="viewPokemon(pokemon.id)">
+    <img [src]="pokemon.sprites.front_default" slot="start" width="70" />
+    <ion-label> {{pokemon.name | titlecase}} </ion-label>
+    <ion-chip slot="end" color="light"> #{{pokemon.id}} </ion-chip>
+    @if(pokemon.favorite === true){
+    <ion-icon name="star" color="warning" slot="end"></ion-icon>
+    }
+  </ion-item>
+  } @empty {
+  <ion-item color="dark">
+    <ion-label>No pokemon available with your selection</ion-label>
+  </ion-item>
+  }
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

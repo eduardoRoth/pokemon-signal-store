@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="danger">
+    <ion-grid>
+      <ion-row class="ion-justify-content-start ion-align-items-center">
+        <ion-col size="auto" push="1">
+          <div class="circle"></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="danger" class="ion-padding-top">
+  @if (pokemon(); as pokemon) {
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="9" class="screen">
+        <img
+          [src]="pokemon.sprites.other['official-artwork'].front_default"
+          (click)="cry.play()"
+        />
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto">
+        <audio
+          #cry
+          [src]="pokemon.cries.latest"
+          type="ogg"
+          [autoplay]="true"
+          [controls]="false"
+        ></audio>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="8">
+        <ion-card color="light">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-chip color="primary"> #{{pokemon.order}} </ion-chip>
+              {{pokemon.name | titlecase}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item color="light">
+              <ion-label>Height</ion-label>
+              <ion-chip slot="end" color="primary">
+                {{pokemon.height}}
+              </ion-chip>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>Weight</ion-label>
+              <ion-chip slot="end" color="primary">
+                {{pokemon.weight}}
+              </ion-chip>
+            </ion-item>
+
+            <ion-button
+              expand="block"
+              [color]="pokemon.favorite === true ? 'warning' : 'light'"
+              [fill]="pokemon.favorite === true ? 'clear' : 'fill'"
+              (click)="toggleFavorite()"
+            >
+              <ion-icon
+                slot="start"
+                [name]="pokemon.favorite === true ? 'star' : 'star-outline'"
+              ></ion-icon>
+              Favorite
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4" class="ion-padding">
+        <nav class="d-pad">
+          <a class="up"></a>
+          <a class="right" (click)="nextPokemon(pokemon.id)"></a>
+          <a class="down"></a>
+          <a class="left" (click)="previousPokemon(pokemon.id)"></a>
+        </nav>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  }
+</ion-content>
