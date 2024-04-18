@@ -81,7 +81,7 @@ export class PokemonsPage {
     const modal = await this.modalCtrl.create({
       component: PokemonPage,
       initialBreakpoint: 0.8,
-      breakpoints: [0, 0.8],
+      breakpoints: [0, 0.8, 1],
     });
     modal.present();
   }
