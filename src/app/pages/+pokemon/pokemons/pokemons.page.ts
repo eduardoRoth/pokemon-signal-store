@@ -25,14 +25,10 @@ import {
   IonSpinner,
   IonTitle,
   IonToolbar,
-} from '@ionic/angular/standalone';
-import { Pokemon, PokemonStore } from '../../../store/pokemon.store';
-import {
   InfiniteScrollCustomEvent,
   ModalController,
-  SearchbarChangeEventDetail,
-  SearchbarInputEventDetail,
-} from '@ionic/angular';
+} from '@ionic/angular/standalone';
+import { Pokemon, PokemonStore } from '../../../store/pokemon.store';
 import { PokemonPage } from '../pokemon/pokemon.page';
 import { PokemonService } from '../../../services/pokemon.service';
 
